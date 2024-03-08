@@ -183,6 +183,7 @@ contract StableSwapFactory is Ownable {
     }
 
     function addPairInfo(address swapContract) external onlyOwner {
+        require(swapContract != ZEROADDRESS, "addPairInfo: Illegal swapContract address");
         IStableSwap swap = IStableSwap(swapContract);
         uint256 N_COINS = swap.N_COINS();
         if (N_COINS == 2) {
